@@ -27,8 +27,3 @@ Backend:
 
 ```bash
 python3 -m venv .venv
-
-## Посмотреть онлайн
-
-WIP
-
