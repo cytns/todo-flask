@@ -16,7 +16,8 @@ def init_db():
     connection.execute("""
         CREATE TABLE IF NOT EXISTS tasks (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL
+            title TEXT NOT NULL,
+            is_done INTEGER NOT NULL DEFAULT 0
         )
     """)
 
@@ -51,6 +52,21 @@ def add_task():
 
         connection.commit()
         connection.close()
+
+    return redirect("/")
+
+
+@app.route("/done/<int:task_id>")
+def done_task(task_id):
+    connection = get_db_connection()
+
+    connection.execute(
+        "UPDATE tasks SET is_done = 1 WHERE id = ?",
+        (task_id,)
+    )
+
+    connection.commit()
+    connection.close()
 
     return redirect("/")
 
