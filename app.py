@@ -1,12 +1,39 @@
+import sqlite3
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-tasks = []
+
+def get_db_connection():
+    connection = sqlite3.connect("todo.db")
+    connection.row_factory = sqlite3.Row
+    return connection
+
+
+def init_db():
+    connection = get_db_connection()
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS tasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL
+        )
+    """)
+
+    connection.commit()
+    connection.close()
 
 
 @app.route("/")
 def index():
+    connection = get_db_connection()
+
+    tasks = connection.execute(
+        "SELECT * FROM tasks ORDER BY id DESC"
+    ).fetchall()
+
+    connection.close()
+
     return render_template("index.html", tasks=tasks)
 
 
@@ -15,10 +42,19 @@ def add_task():
     task = request.form["task"]
 
     if task:
-        tasks.append(task)
+        connection = get_db_connection()
+
+        connection.execute(
+            "INSERT INTO tasks (title) VALUES (?)",
+            (task,)
+        )
+
+        connection.commit()
+        connection.close()
 
     return redirect("/")
 
 
 if __name__ == "__main__":
+    init_db()
     app.run(debug=True)
