@@ -3,12 +3,10 @@ from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-
 def get_db_connection():
     connection = sqlite3.connect("todo.db")
     connection.row_factory = sqlite3.Row
     return connection
-
 
 def init_db():
     connection = get_db_connection()
@@ -24,7 +22,6 @@ def init_db():
     connection.commit()
     connection.close()
 
-
 @app.route("/")
 def index():
     connection = get_db_connection()
@@ -36,7 +33,6 @@ def index():
     connection.close()
 
     return render_template("index.html", tasks=tasks)
-
 
 @app.route("/add", methods=["POST"])
 def add_task():
@@ -55,7 +51,6 @@ def add_task():
 
     return redirect("/")
 
-
 @app.route("/done/<int:task_id>")
 def done_task(task_id):
     connection = get_db_connection()
@@ -70,6 +65,19 @@ def done_task(task_id):
 
     return redirect("/")
 
+@app.route("/delete/<int:task_id>")
+def delete_task(task_id):
+    connection = get_db_connection()
+
+    connection.execute(
+        "DELETE FROM tasks WHERE id = ?",
+        (task_id,)
+    )
+
+    connection.commit()
+    connection.close()
+
+    return redirect("/")
 
 if __name__ == "__main__":
     init_db()
