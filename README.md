@@ -1,5 +1,7 @@
 # Todo Flask
 
+[![Maintainability](https://qlty.sh/gh/cytns/projects/todo-flask/maintainability.svg)](https://qlty.sh/gh/cytns/projects/todo-flask)
+
 Простое веб-приложение для управления задачами.
 
 Пользователь может:
