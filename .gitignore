@@ -1,0 +1,4 @@
+.venv/
+todo.db
+__pycache__/
+.DS_Store
