@@ -23,6 +23,8 @@ def init_db():
     connection.commit()
     connection.close()
 
+init_db()
+
 @app.route("/")
 def index():
     connection = get_db_connection()
@@ -81,5 +83,4 @@ def delete_task(task_id):
     return redirect("/")
 
 if __name__ == "__main__":
-    init_db()
     app.run()
