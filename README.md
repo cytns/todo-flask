@@ -11,14 +11,17 @@
 ## Стек
 
 Frontend:
+
 - HTML
 - CSS
 
 Backend:
+
 - Python
 - Flask
 
 БД:
+
 - SQLite
 
 ## Запуск проекта
@@ -27,3 +30,8 @@ Backend:
 
 ```bash
 python3 -m venv .venv
+```
+
+## Попробовать онлайн
+
+https://todo-flask-iq9v.onrender.com/
