@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Список задач</h1>
@@ -11,11 +12,10 @@
             type="text"
             name="task"
             placeholder="Введите задачу"
+            required
         >
 
-        <button type="submit">
-            Добавить
-        </button>
+        <button type="submit">Добавить</button>
     </form>
     <ul>
         {% for task in tasks %}
@@ -25,14 +25,10 @@
                 {% else %}
                     {{ task["title"] }}
 
-                    <a href="/done/{{ task['id'] }}">
-                        Выполнено
-                    </a>
+                    <a href="/done/{{ task['id'] }}">Выполнено</a>
                 {% endif %}
 
-                <a href="/delete/{{ task['id'] }}">
-                    Удалить
-                </a>
+                <a href="/delete/{{ task['id'] }}">Удалить</a>
             </li>
         {% endfor %}
     </ul>
