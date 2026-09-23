@@ -1,41 +1,41 @@
 body {
-    font-family: Arial, sans-serif;
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 0 20px;
+  font-family: Arial, sans-serif;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
 h1 {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 24px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
 input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
 }
 
 button {
-    padding: 10px 16px;
-    cursor: pointer;
+  padding: 10px 16px;
+  cursor: pointer;
 }
 
 ul {
-    padding: 0;
+  padding: 0;
 }
 
 li {
-    list-style: none;
-    padding: 12px 0;
-    border-bottom: 1px solid #ddd;
+  list-style: none;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
 }
 
 a {
-    margin-left: 10px;
+  margin-left: 10px;
 }
