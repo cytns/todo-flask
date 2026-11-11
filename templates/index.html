@@ -12,12 +12,7 @@
   </head>
 
   <body>
-    <h1>Список задач</h1>
-    <form action="/add" method="post">
-      <input type="text" name="task" placeholder="Введите задачу" required />
-
-      <button type="submit">Добавить</button>
-    </form>
+    <h1>Канбан</h1>
     <div class="board">
       <div class="column" data-status="0">
         <h2>Сделать</h2>
@@ -35,6 +30,14 @@
           {% endif %}
           {% endfor %}
         </ul>
+        <details class="add-task">
+          <summary>+ Добавить задачу</summary>
+          <form action="/add" method="post">
+            <input type="hidden" name="status" value="0" />
+            <input type="text" name="task" placeholder="Введите задачу" aria-label="Название задачи" required />
+            <button type="submit">Добавить</button>
+          </form>
+        </details>
 
       </div>
       <div class="column" data-status="2">
@@ -53,6 +56,14 @@
           {% endif %}
           {% endfor %}
         </ul>
+        <details class="add-task">
+          <summary>+ Добавить задачу</summary>
+          <form action="/add" method="post">
+            <input type="hidden" name="status" value="2" />
+            <input type="text" name="task" placeholder="Введите задачу" aria-label="Название задачи" required />
+            <button type="submit">Добавить</button>
+          </form>
+        </details>
 
       </div>
       <div class="column" data-status="1">
@@ -70,6 +81,14 @@
           {% endif %}
           {% endfor %}
         </ul>
+        <details class="add-task">
+          <summary>+ Добавить задачу</summary>
+          <form action="/add" method="post">
+            <input type="hidden" name="status" value="1" />
+            <input type="text" name="task" placeholder="Введите задачу" aria-label="Название задачи" required />
+            <button type="submit">Добавить</button>
+          </form>
+        </details>
       </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>

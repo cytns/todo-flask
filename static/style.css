@@ -9,14 +9,25 @@ h1 {
   margin-bottom: 24px;
 }
 
-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 24px;
+.add-task summary {
+  list-style: none;
+  color: #777;
+  cursor: pointer;
 }
 
-input {
-  flex: 1;
+.add-task summary::-webkit-details-marker {
+  display: none;
+}
+
+.add-task form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.add-task input {
+  min-width: 0;
   padding: 10px;
   font-size: 16px;
 }

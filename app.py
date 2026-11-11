@@ -39,14 +39,18 @@ def index():
 
 @app.route("/add", methods=["POST"])
 def add_task():
-    task = request.form["task"]
+    task = request.form["task"].strip()
+    status = request.form.get("status", "0")
+
+    if status not in ["0", "1", "2"]:
+        return "Неверный статус", 400
 
     if task:
         connection = get_db_connection()
 
         connection.execute(
-            "INSERT INTO tasks (title) VALUES (?)",
-            (task,)
+            "INSERT INTO tasks (title, is_done) VALUES (?, ?)",
+            (task, int(status))
         )
 
         connection.commit()
