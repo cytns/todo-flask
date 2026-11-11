@@ -39,3 +39,20 @@ li {
 a {
   margin-left: 10px;
 }
+
+.board {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .board {
+    flex-direction: column;
+  }
+}

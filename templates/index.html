@@ -2,6 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Todo List</title>
     <link
       rel="stylesheet"
@@ -16,43 +17,51 @@
 
       <button type="submit">Добавить</button>
     </form>
-    <h2>Сделать</h2>
-    <ul>
-      {% for task in tasks %}
-      {% if task["is_done"] == 0 %}
-      <li>
-        {{ task["title"] }}
-        <a href="/work/{{ task['id'] }}">В работу</a>
-        <a href="/done/{{ task['id'] }}">Выполнено</a>
-        <a href="/delete/{{ task['id'] }}">Удалить</a>
-      </li>
-      {% endif %}
-      {% endfor %}
-    </ul>
+    <div class="board">
+      <div class="column">
+        <h2>Сделать</h2>
+        <ul>
+          {% for task in tasks %}
+          {% if task["is_done"] == 0 %}
+          <li>
+            {{ task["title"] }}
+            <a href="/work/{{ task['id'] }}">В работу</a>
+            <a href="/done/{{ task['id'] }}">Выполнено</a>
+            <a href="/delete/{{ task['id'] }}">Удалить</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
 
-    <h2>В работе</h2>
-    <ul>
-      {% for task in tasks %}
-      {% if task["is_done"] == 2 %}
-      <li>
-        {{ task["title"] }}
-        <a href="/done/{{ task['id'] }}">Выполнено</a>
-        <a href="/delete/{{ task['id'] }}">Удалить</a>
-      </li>
-      {% endif %}
-      {% endfor %}
-    </ul>
+      </div>
+      <div class="column">
+        <h2>В работе</h2>
+        <ul>
+          {% for task in tasks %}
+          {% if task["is_done"] == 2 %}
+          <li>
+            {{ task["title"] }}
+            <a href="/done/{{ task['id'] }}">Выполнено</a>
+            <a href="/delete/{{ task['id'] }}">Удалить</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
 
-    <h2>Готово</h2>
-    <ul>
-      {% for task in tasks %}
-      {% if task["is_done"] == 1 %}
-      <li>
-        <s>{{ task["title"] }}</s>
-        <a href="/delete/{{ task['id'] }}">Удалить</a>
-      </li>
-      {% endif %}
-      {% endfor %}
-    </ul>
+      </div>
+      <div class="column">
+        <h2>Готово</h2>
+        <ul>
+          {% for task in tasks %}
+          {% if task["is_done"] == 1 %}
+          <li>
+            <s>{{ task["title"] }}</s>
+            <a href="/delete/{{ task['id'] }}">Удалить</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
