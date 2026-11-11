@@ -32,12 +32,52 @@ ul {
 
 li {
   list-style: none;
-  padding: 12px 0;
-  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: grab;
 }
 
-a {
-  margin-left: 10px;
+li:hover {
+  background: #eee;
+}
+
+li:active {
+  cursor: grabbing;
+}
+
+.task-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #333;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background: #ddd;
+}
+
+@media (hover: hover) {
+  .move-link {
+    opacity: 0.65;
+  }
+
+  li:hover .move-link,
+  .move-link:focus {
+    opacity: 1;
+  }
 }
 
 .board {

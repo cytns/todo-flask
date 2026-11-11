@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Todo List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
@@ -18,52 +19,59 @@
       <button type="submit">Добавить</button>
     </form>
     <div class="board">
-      <div class="column">
+      <div class="column" data-status="0">
         <h2>Сделать</h2>
         <ul>
           {% for task in tasks %}
           {% if task["is_done"] == 0 %}
-          <li>
+          <li draggable="true" data-task-id="{{ task['id'] }}">
             {{ task["title"] }}
-            <a href="/work/{{ task['id'] }}">В работу</a>
-            <a href="/done/{{ task['id'] }}">Выполнено</a>
-            <a href="/delete/{{ task['id'] }}">Удалить</a>
+            <div class="task-actions">
+              <a class="action-button move-link" href="/work/{{ task['id'] }}" aria-label="В работу" title="В работу"><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a class="action-button move-link" href="/done/{{ task['id'] }}" aria-label="Выполнено" title="Выполнено"><i class="bi bi-check-lg" aria-hidden="true"></i></a>
+              <a class="action-button" href="/delete/{{ task['id'] }}" aria-label="Удалить" title="Удалить"><i class="bi bi-trash" aria-hidden="true"></i></a>
+            </div>
           </li>
           {% endif %}
           {% endfor %}
         </ul>
 
       </div>
-      <div class="column">
+      <div class="column" data-status="2">
         <h2>В работе</h2>
         <ul>
           {% for task in tasks %}
           {% if task["is_done"] == 2 %}
-          <li>
+          <li draggable="true" data-task-id="{{ task['id'] }}">
             {{ task["title"] }}
-            <a href="/todo/{{ task['id'] }}">Вернуть</a>
-            <a href="/done/{{ task['id'] }}">Выполнено</a>
-            <a href="/delete/{{ task['id'] }}">Удалить</a>
+            <div class="task-actions">
+              <a class="action-button move-link" href="/todo/{{ task['id'] }}" aria-label="Вернуть в «Сделать»" title="Вернуть в «Сделать»"><i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+              <a class="action-button move-link" href="/done/{{ task['id'] }}" aria-label="Выполнено" title="Выполнено"><i class="bi bi-check-lg" aria-hidden="true"></i></a>
+              <a class="action-button" href="/delete/{{ task['id'] }}" aria-label="Удалить" title="Удалить"><i class="bi bi-trash" aria-hidden="true"></i></a>
+            </div>
           </li>
           {% endif %}
           {% endfor %}
         </ul>
 
       </div>
-      <div class="column">
+      <div class="column" data-status="1">
         <h2>Готово</h2>
         <ul>
           {% for task in tasks %}
           {% if task["is_done"] == 1 %}
-          <li>
+          <li draggable="true" data-task-id="{{ task['id'] }}">
             <s>{{ task["title"] }}</s>
-            <a href="/todo/{{ task['id'] }}">Вернуть</a>
-            <a href="/delete/{{ task['id'] }}">Удалить</a>
+            <div class="task-actions">
+              <a class="action-button move-link" href="/todo/{{ task['id'] }}" aria-label="Вернуть в «Сделать»" title="Вернуть в «Сделать»"><i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+              <a class="action-button" href="/delete/{{ task['id'] }}" aria-label="Удалить" title="Удалить"><i class="bi bi-trash" aria-hidden="true"></i></a>
+            </div>
           </li>
           {% endif %}
           {% endfor %}
         </ul>
       </div>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>

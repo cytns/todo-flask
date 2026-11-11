@@ -54,6 +54,26 @@ def add_task():
 
     return redirect("/")
 
+@app.route("/move/<int:task_id>", methods=["POST"])
+def move_task(task_id):
+    status = request.form.get("status")
+
+    if status not in ["0", "1", "2"]:
+        return "Неверный статус", 400
+
+    connection = get_db_connection()
+    cursor = connection.execute(
+        "UPDATE tasks SET is_done = ? WHERE id = ?",
+        (int(status), task_id)
+    )
+    connection.commit()
+    connection.close()
+
+    if cursor.rowcount == 0:
+        return "Задача не найдена", 404
+
+    return "Готово"
+
 @app.route("/todo/<int:task_id>")
 def todo_task(task_id):
     connection = get_db_connection()
