@@ -16,18 +16,41 @@
 
       <button type="submit">Добавить</button>
     </form>
+    <h2>Сделать</h2>
     <ul>
       {% for task in tasks %}
+      {% if task["is_done"] == 0 %}
       <li>
-        {% if task["is_done"] %}
-        <s>{{ task["title"] }}</s>
-        {% else %} {{ task["title"] }}
-
+        {{ task["title"] }}
         <a href="/done/{{ task['id'] }}">Выполнено</a>
-        {% endif %}
-
         <a href="/delete/{{ task['id'] }}">Удалить</a>
       </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+
+    <h2>В работе</h2>
+    <ul>
+      {% for task in tasks %}
+      {% if task["is_done"] == 2 %}
+      <li>
+        {{ task["title"] }}
+        <a href="/done/{{ task['id'] }}">Выполнено</a>
+        <a href="/delete/{{ task['id'] }}">Удалить</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+
+    <h2>Готово</h2>
+    <ul>
+      {% for task in tasks %}
+      {% if task["is_done"] == 1 %}
+      <li>
+        <s>{{ task["title"] }}</s>
+        <a href="/delete/{{ task['id'] }}">Удалить</a>
+      </li>
+      {% endif %}
       {% endfor %}
     </ul>
   </body>
