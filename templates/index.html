@@ -22,6 +22,7 @@
       {% if task["is_done"] == 0 %}
       <li>
         {{ task["title"] }}
+        <a href="/work/{{ task['id'] }}">В работу</a>
         <a href="/done/{{ task['id'] }}">Выполнено</a>
         <a href="/delete/{{ task['id'] }}">Удалить</a>
       </li>
