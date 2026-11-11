@@ -54,6 +54,20 @@ def add_task():
 
     return redirect("/")
 
+@app.route("/todo/<int:task_id>")
+def todo_task(task_id):
+    connection = get_db_connection()
+
+    connection.execute(
+        "UPDATE tasks SET is_done = 0 WHERE id = ?",
+        (task_id,)
+    )
+
+    connection.commit()
+    connection.close()
+
+    return redirect("/")
+
 @app.route("/work/<int:task_id>")
 def work_task(task_id):
     connection = get_db_connection()

@@ -41,6 +41,7 @@
           {% if task["is_done"] == 2 %}
           <li>
             {{ task["title"] }}
+            <a href="/todo/{{ task['id'] }}">Вернуть</a>
             <a href="/done/{{ task['id'] }}">Выполнено</a>
             <a href="/delete/{{ task['id'] }}">Удалить</a>
           </li>
@@ -56,6 +57,7 @@
           {% if task["is_done"] == 1 %}
           <li>
             <s>{{ task["title"] }}</s>
+            <a href="/todo/{{ task['id'] }}">Вернуть</a>
             <a href="/delete/{{ task['id'] }}">Удалить</a>
           </li>
           {% endif %}
